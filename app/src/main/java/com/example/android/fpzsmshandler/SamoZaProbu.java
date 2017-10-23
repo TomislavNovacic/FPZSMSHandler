@@ -26,7 +26,7 @@ public class SamoZaProbu extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        message = "probni tekst koji ima 4559 gdfshgiudhfsdvjdsnjnxcndsicoescmd mdyjcn cjydncdnonsyciyminydu bfvbyxnvkcckyxcnjsbfuesdfnyximcinxynyjnxicmsiceufdvbvbcxjncx<jycnsybcdkjbckjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjxcjxbchybx";
+        message = "My name is Tomislav and this is example of text to speach class. I'm awesome.";
 
         tts =new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
