@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FPZ SMS Handler</string>
+    <string name="dialog_title">FPZ Traffic information</string>
+    <string name="button_text">OK</string>
 </resources>

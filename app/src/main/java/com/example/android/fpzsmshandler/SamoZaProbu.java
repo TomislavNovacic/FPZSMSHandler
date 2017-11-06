@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -30,7 +32,17 @@ public class SamoZaProbu extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        message = "My name is Tomislav and this is example of text to speach class. I'm awesome.";
+        Button button = (Button) findViewById(R.id.notificaton_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), DialogActivity.class);
+                intent.putExtra("Message", message);
+                startActivity(intent);
+            }
+        });
+
+      /*  message = "My name is Tomislav and this is example of text to speach class. I'm awesome.";
 
         tts =new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
@@ -65,7 +77,7 @@ public class SamoZaProbu extends AppCompatActivity{
                         .setContentText(message);
 
         NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(1, mBuilder.build());
+        notificationManager.notify(1, mBuilder.build()); */
     }
 
     public void onPause(){

@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.e("Message", messageText);
 
-                tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+           /*     tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
                     @Override
                     public void onInit(int status) {
                         if (status != TextToSpeech.ERROR) {
@@ -39,7 +40,11 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     }
-                });
+                }); */
+
+                Intent intent = new Intent(getApplicationContext(), DialogActivity.class);
+                intent.putExtra("Message", messageText);
+                startActivity(intent);
 
 
              /*   Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
@@ -49,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 stackBuilder.addNextIntent(notificationIntent);
                 PendingIntent notificationPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT); */
 
-                NotificationCompat.Builder mBuilder =
+               /* NotificationCompat.Builder mBuilder =
                         (NotificationCompat.Builder) new NotificationCompat.Builder(getApplicationContext())
                                 .setSmallIcon(R.drawable.ic_launcher)
                                 .setContentTitle("FPZ Traffic information")
@@ -60,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                                 .setContentText(messageText);
 
                 NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.notify(1, mBuilder.build());
+                notificationManager.notify(1, mBuilder.build()); */
             }
         });
     }
