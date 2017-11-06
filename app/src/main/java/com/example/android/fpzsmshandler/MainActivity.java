@@ -22,11 +22,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.e("Message from main", "hmmm");
+
+        Intent intent = getIntent();
+        String messageText = (String) intent.getExtras().get("MessageFromService");
+
+        Intent intent2 = new Intent(getApplicationContext(), DialogActivity.class);
+        intent2.putExtra("Message", messageText);
+        startActivity(intent2);
+
         SMSReceiver.bindListener(new SMSListener() {
             @Override
             public void messageReceived(final String messageText) {
 
-                Log.e("Message", messageText);
 
            /*     tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
                     @Override
