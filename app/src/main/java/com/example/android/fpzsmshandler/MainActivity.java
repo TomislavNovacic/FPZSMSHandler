@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.e("MAIN-aCTIVITY", "3");
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             createPermissions();
         }
@@ -39,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         screenLock.acquire();
 
         screenLock.release();
-               Log.e("Message from main", "hmmm");
 
         Intent intent = getIntent();
         String messageText = (String) intent.getExtras().get("MessageFromService");
@@ -48,23 +49,20 @@ public class MainActivity extends AppCompatActivity {
         intent2.putExtra("Message", messageText);
         startActivity(intent2);
 
-       SMSReceiver.bindListener(new SMSListener() {
+     /*  SMSReceiver.bindListener(new SMSListener() {
             @Override
             public void messageReceived(final String messageText) {
-                SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-                String previousMessage = prefs.getString("Poruka", "");
-                if(!(messageText.equals(previousMessage))) {
-                    SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
-                    editor.clear();
-                    editor.apply();
-                    editor.putString("Poruka",messageText);
-                    editor.apply();
+             //   SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+             //   String previousMessage = prefs.getString("Poruka", "");
+             //   if(!(messageText.equals(previousMessage))) {
+                   // cleanSharedPrefs();
+                   // populateSharedPrefs(messageText);
                     Intent intent = new Intent(getApplicationContext(), DialogActivity.class);
                     intent.putExtra("Message", messageText);
                     startActivity(intent);
-                }
+            //    }
                }
-        });
+        }); */
     }
 
     public void createPermissions(){
@@ -76,5 +74,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void cleanSharedPrefs () {
+        SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+        editor.clear();
+        editor.commit();
+    }
+
+    public void populateSharedPrefs (String messageText) {
+        SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+        editor.putString("Poruka",messageText);
+        editor.commit();
     }
 }

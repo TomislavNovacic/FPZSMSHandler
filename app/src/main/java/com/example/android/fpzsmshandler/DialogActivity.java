@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -31,6 +32,8 @@ public class DialogActivity extends AppCompatActivity {
         setContentView(R.layout.message_layout);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+
+        Log.e("diALOG", "4");
 
         Intent intent = getIntent();
         message = (String) intent.getExtras().get("Message");
@@ -64,7 +67,7 @@ public class DialogActivity extends AppCompatActivity {
                     }
                 });
             }
-        }, 1500);
+        }, 2500);
     }
 
     public void onPause() {
