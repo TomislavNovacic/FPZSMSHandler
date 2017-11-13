@@ -17,6 +17,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -29,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Log.e("MAIN-aCTIVITY", "3");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             createPermissions();
@@ -49,20 +48,6 @@ public class MainActivity extends AppCompatActivity {
         intent2.putExtra("Message", messageText);
         startActivity(intent2);
 
-     /*  SMSReceiver.bindListener(new SMSListener() {
-            @Override
-            public void messageReceived(final String messageText) {
-             //   SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-             //   String previousMessage = prefs.getString("Poruka", "");
-             //   if(!(messageText.equals(previousMessage))) {
-                   // cleanSharedPrefs();
-                   // populateSharedPrefs(messageText);
-                    Intent intent = new Intent(getApplicationContext(), DialogActivity.class);
-                    intent.putExtra("Message", messageText);
-                    startActivity(intent);
-            //    }
-               }
-        }); */
     }
 
     public void createPermissions(){
@@ -76,15 +61,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void cleanSharedPrefs () {
-        SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
-        editor.clear();
-        editor.commit();
-    }
-
-    public void populateSharedPrefs (String messageText) {
-        SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
-        editor.putString("Poruka",messageText);
-        editor.commit();
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        finish();
     }
 }

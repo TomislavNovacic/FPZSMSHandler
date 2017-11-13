@@ -20,8 +20,6 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class SMSReceiver extends BroadcastReceiver {
 
-    //interface
-    private static SMSListener mListener;
     String messageBody;
 
     @Override
@@ -38,21 +36,6 @@ public class SMSReceiver extends BroadcastReceiver {
             //Check the sender to filter messages which we require to read
             messageBody = smsMessage.getMessageBody();
         }
-
-        SharedPreferences sharedPreferences = context.getSharedPreferences("My SharedPrefs", MODE_PRIVATE);
-        String firstEvent = sharedPreferences.getString("Poruka", "");
-
-        if(!(messageBody.equals(firstEvent))) {
-            SharedPreferences sharedPreferences2 = context.getSharedPreferences("My SharedPrefs", MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences2.edit();
-            editor.clear();
-            editor.commit();
-
-            SharedPreferences sharedPreferences1 = context.getSharedPreferences("My SharedPrefs", MODE_PRIVATE);
-            SharedPreferences.Editor editor1 = sharedPreferences1.edit();
-            editor1.putString("Poruka",messageBody);
-            editor1.commit();
-
             PackageManager pm = context.getPackageManager();
             Intent launchIntent = pm.getLaunchIntentForPackage("com.example.android.fpzsmshandler");
             launchIntent.putExtra("MessageFromService", messageBody);
@@ -63,10 +46,5 @@ public class SMSReceiver extends BroadcastReceiver {
             );
             context.startActivity(launchIntent);
         }
-        }
-
-     /*  public static void bindListener(SMSListener listener) {
-        mListener = listener;
-    } */
 }
 

@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -32,8 +33,9 @@ public class DialogActivity extends AppCompatActivity {
         setContentView(R.layout.message_layout);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH, WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH);
 
-        Log.e("diALOG", "4");
+        this.setFinishOnTouchOutside(false);
 
         Intent intent = getIntent();
         message = (String) intent.getExtras().get("Message");
@@ -45,6 +47,8 @@ public class DialogActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent1 = new Intent(getApplicationContext(), ScreenHolder.class);
+                startActivity(intent1);
                 finish();
             }
         });
@@ -67,7 +71,7 @@ public class DialogActivity extends AppCompatActivity {
                     }
                 });
             }
-        }, 2500);
+        }, 1500);
     }
 
     public void onPause() {
@@ -89,5 +93,16 @@ public class DialogActivity extends AppCompatActivity {
     private void ttsGreater21(String text) {
         String utteranceId = this.hashCode() + "";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, utteranceId);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (MotionEvent.ACTION_OUTSIDE == event.getAction()) {
+            Intent intent1 = new Intent(getApplicationContext(), ScreenHolder.class);
+            startActivity(intent1);
+            finish();
+            return true;
+        }
+        return super.onTouchEvent(event);
     }
 }
