@@ -35,21 +35,20 @@ public class SMSReceiver extends BroadcastReceiver {
             SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) pdus[i]);
 
             String sender = smsMessage.getDisplayOriginatingAddress();
-            //Check the sender to filter messages which we require to read
+
             messageBody = smsMessage.getMessageBody();
         }
 
-            PackageManager pm = context.getPackageManager();
-            Intent launchIntent = pm.getLaunchIntentForPackage("com.example.android.fpzsmshandler");
-            launchIntent.putExtra("MessageFromService", messageBody);
-            launchIntent.setFlags(
-                    Intent.FLAG_ACTIVITY_REORDER_TO_FRONT |
-                            Intent.FLAG_ACTIVITY_NEW_TASK |
-                            Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED
+        PackageManager pm = context.getPackageManager();
+        Intent launchIntent = pm.getLaunchIntentForPackage("com.example.android.fpzsmshandler");
+        launchIntent.putExtra("MessageFromService", messageBody);
+        launchIntent.setFlags(
+                Intent.FLAG_ACTIVITY_REORDER_TO_FRONT |
+                        Intent.FLAG_ACTIVITY_NEW_TASK |
+                        Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED
             );
-            context.startActivity(launchIntent);
-
-        }
+        context.startActivity(launchIntent);
+    }
 
 }
 
