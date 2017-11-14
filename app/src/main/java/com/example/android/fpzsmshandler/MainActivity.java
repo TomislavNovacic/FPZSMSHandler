@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.e("MAIN-aCTIVITY", "3");
+        Log.e("MYAPP", "MAIN ACTIVITY");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             createPermissions();
@@ -48,21 +48,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent2 = new Intent(getApplicationContext(), DialogActivity.class);
         intent2.putExtra("Message", messageText);
         startActivity(intent2);
+    }
 
-     /*  SMSReceiver.bindListener(new SMSListener() {
-            @Override
-            public void messageReceived(final String messageText) {
-             //   SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-             //   String previousMessage = prefs.getString("Poruka", "");
-             //   if(!(messageText.equals(previousMessage))) {
-                   // cleanSharedPrefs();
-                   // populateSharedPrefs(messageText);
-                    Intent intent = new Intent(getApplicationContext(), DialogActivity.class);
-                    intent.putExtra("Message", messageText);
-                    startActivity(intent);
-            //    }
-               }
-        }); */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("MYAPP", "ON RESUME");
     }
 
     public void createPermissions(){

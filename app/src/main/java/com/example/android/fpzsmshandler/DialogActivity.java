@@ -33,7 +33,7 @@ public class DialogActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
-        Log.e("diALOG", "4");
+        Log.e("MYAPP", "DIALOG");
 
         Intent intent = getIntent();
         message = (String) intent.getExtras().get("Message");
@@ -49,7 +49,7 @@ public class DialogActivity extends AppCompatActivity {
             }
         });
 
-        final Handler handler = new Handler();
+   /*     final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -67,7 +67,7 @@ public class DialogActivity extends AppCompatActivity {
                     }
                 });
             }
-        }, 2500);
+        }, 2500); */
     }
 
     public void onPause() {
