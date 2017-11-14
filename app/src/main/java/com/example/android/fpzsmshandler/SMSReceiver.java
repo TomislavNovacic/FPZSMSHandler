@@ -20,8 +20,6 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class SMSReceiver extends BroadcastReceiver {
 
-    //interface
-    private static SMSListener mListener;
     String messageBody;
 
     @Override
