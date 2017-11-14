@@ -40,6 +40,9 @@
             android:launchMode="singleInstance" android:excludeFromRecents="true" android:noHistory="true"
             android:taskAffinity="" android:theme="@style/AppDialogTheme" android:showOnLockScreen="true">
         </activity>
+        <activity android:name=".ScreenHolder" android:theme="@android:style/Theme.Translucent.NoTitleBar">
+
+        </activity>
 
     </application>
 
